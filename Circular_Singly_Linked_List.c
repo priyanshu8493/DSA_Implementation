@@ -41,6 +41,41 @@ struct node * create(){
 }
 
 
+// creating a CLL maintaining both head and tail pointers
+
+struct node * create_tail(){
+
+    head = NULL;
+    struct node *tail = NULL;
+
+    int choice = 1;
+
+    while(choice){
+
+        new_node= (struct node *)malloc(sizeof(struct node));
+        new_node->next = NULL;
+        printf("\nA new node has been created ! Enter data - \n");
+        scanf("%d", &new_node->data);
+
+        if( head == NULL ){
+            head = tail = new_node;
+        }
+        else{
+
+            tail->next = new_node;
+            tail = new_node;
+
+        }
+
+        tail->next = head;
+        printf("\nDo you want to add more nodes ? (0/1)\n");
+        scanf("%d", &choice);
+
+    }
+    return head;
+}
+
+
 // function for traversing the singly circular linked list
 
 void trav(struct node* head){
@@ -59,7 +94,7 @@ void trav(struct node* head){
 
 int main(){
     
-    head = create();
+    head = create_tail();
     trav(head);
     return 0;
 }
