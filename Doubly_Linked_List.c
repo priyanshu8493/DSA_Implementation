@@ -23,7 +23,7 @@ struct node * create(){
 
         if ( head == NULL ) {
 
-            new_node->next = NULL;
+            new_node->next = NULL; 
             head = new_node;
             temp = new_node;
 
@@ -183,17 +183,36 @@ struct node * del_at_pos(struct node * head){
         head = del_at_beg(head);
     }
     else{
+        // counting len of linked list 
+        temp = head;
+        int count=1;
+        while(temp->next!=NULL){
+            temp = temp->next;
+            count++;
+        }
+
+
+
+
         temp = head;
         for ( int i = 0; i<(pos-2); i++){
             temp = temp->next;
         }
         
-        struct node * temp2;
-        temp2 = temp->next;      // GETTING SEGMENTATION ERROR WHEN DELETING LAST NODE; DEGUG IT
+        
+
+        struct node * temp2; // holding second last node
+        temp2 = temp->next; //holding last node     // GETTING SEGMENTATION ERROR WHEN DELETING LAST NODE; DEGUG IT
 
         temp->next = temp2->next;
+
+        if ( pos == count){
+            free(temp2);
+        }
+
+        else{
         temp2->next->prev = temp;
-        free(temp2);
+        free(temp2);}
 
         printf("\nDesired node has been deleted \n");
     }
@@ -229,7 +248,8 @@ int main(){
 
     head = create();
     trav(head);
-    head = rev(head);
+    head = del_at_pos(head);
+
     trav(head);
 
 
