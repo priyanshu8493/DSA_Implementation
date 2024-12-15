@@ -41,7 +41,25 @@ struct node * create(){
 }
 
 
+// function for traversing the singly circular linked list
+
+void trav(struct node* head){
+    temp = head;
+    printf("\nThe Circular Linked List is - \n");
+
+    do{
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }while (temp->next != head->next );
+
+
+    
+}
+
+
 int main(){
     
     head = create();
+    trav(head);
+    return 0;
 }
