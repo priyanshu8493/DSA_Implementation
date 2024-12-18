@@ -195,11 +195,41 @@ struct node * ins_at_pos(struct node * tail ){
 
 }
 
+// fucntion to delete first node ( tail maintained )
+
+struct node * del_at_beg(struct node * tail){
+    
+    temp = tail->next;
+
+    if ( tail == NULL ){
+        printf("\nList is empty\n");
+    }
+
+    else if ( temp == tail ){
+        tail = NULL;
+        free(temp);
+    }
+
+    else{
+
+        tail->next = temp->next;
+        free(temp);
+        printf("\nFirst node has been deleted\n");
+
+    }
+    return tail;
+}
+
+
+
+
+
+
 int main(){
     struct node * tail;
     tail = create_tail();
     trav_tail(tail);
-    tail = ins_at_pos(tail);
+    tail = del_at_beg(tail);
     trav_tail(tail);
     return 0;
 }
