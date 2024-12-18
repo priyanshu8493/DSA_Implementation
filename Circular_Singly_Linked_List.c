@@ -221,15 +221,49 @@ struct node * del_at_beg(struct node * tail){
 }
 
 
+// fucntion to delete the last node ( again tail maintained )
 
 
+struct node * del_at_end(struct node * tail ){
+    struct node * prev;
+    temp = tail->next;
+
+    if( tail== NULL){
+        printf("\nLlist is empty\n");
+    }
+    else if ( tail == tail->next ){
+        tail = NULL;
+        free(temp);
+    }
+
+
+    else{
+
+        while(temp!=tail){
+
+            prev = temp;
+            temp = temp->next;
+
+        }
+
+        prev->next = tail->next;
+        tail = prev;
+        free(temp);
+
+
+        printf("\nThe last node has been deleted !\n");
+    }
+
+    return tail;
+}
 
 
 int main(){
     struct node * tail;
     tail = create_tail();
     trav_tail(tail);
-    tail = del_at_beg(tail);
+    tail = del_at_end(tail);
+
     trav_tail(tail);
     return 0;
 }
