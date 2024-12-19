@@ -277,7 +277,7 @@ struct node * del_at_pos( struct node * tail ){
 
     
 
-    printf("\n len = %d" ,l);
+    //printf("\n len = %d" ,l);
 
     
 
@@ -317,11 +317,40 @@ struct node * del_at_pos( struct node * tail ){
     return tail;
 }
 
+
+//function to reverse the list
+
+
+struct node * reverse(struct node * tail ){
+    struct node * prev, *next;
+
+    temp = tail->next;
+    next = temp->next;
+
+    while( temp != tail ){
+        prev = temp;
+        temp = next;
+        next = temp->next;
+        temp->next = prev;
+    }
+
+    next->next = tail;
+    tail= next;
+    
+
+
+
+
+    return tail;
+}
+
+
+
 int main(){
     struct node * tail;
     tail = create_tail();
     trav_tail(tail);
-    tail = del_at_pos(tail);
+    tail = reverse(tail);
 
     trav_tail(tail);
     return 0;
