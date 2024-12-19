@@ -258,11 +258,70 @@ struct node * del_at_end(struct node * tail ){
 }
 
 
+// function to delete a node from a given posiiton 
+
+struct node * del_at_pos( struct node * tail ){
+
+    int pos, i = 1, l=1;
+    printf("\nEnter the position -\n");
+    scanf("%d", &pos);
+
+    temp = tail->next; // temp pointing to head
+
+    while( temp->next != tail->next ){
+        temp = temp->next;
+        
+        l++;
+
+    }
+
+    
+
+    printf("\n len = %d" ,l);
+
+    
+
+    if( pos < 1 || pos > l ){
+        printf("\nInvalid Position!\n");
+    }
+
+    else if( pos == 1 ){
+        tail = del_at_beg(tail);
+
+    }
+    else if( pos == l ){
+        tail = del_at_end(tail);
+    }
+
+    else{
+
+        temp = tail->next;
+
+        while( i< pos-1 ){
+            temp= temp->next;
+            i++;
+        }
+        struct node * next;
+
+        next = temp->next;
+
+        temp->next = next->next;
+
+        free ( next );
+
+
+    }
+
+
+
+    return tail;
+}
+
 int main(){
     struct node * tail;
     tail = create_tail();
     trav_tail(tail);
-    tail = del_at_end(tail);
+    tail = del_at_pos(tail);
 
     trav_tail(tail);
     return 0;
